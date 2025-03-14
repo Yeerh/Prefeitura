@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Cadastro Visitantes</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="style.css"> <!-- Arquivo de estilos externo -->
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- Alerta de sucesso no topo -->
+    <div id="alertSucesso" class="alert alert-success text-center position-fixed top-0 start-50 translate-middle-x w-50 d-none" role="alert">
+        Cadastro de visitante realizado com sucesso!
+    </div>
+
+    <!-- Header fixo no topo -->
+    <header class="header bg-primary text-white text-center py-3 d-flex align-items-center justify-content-center">
+        <img src="templates/img/logo.png" alt="Logo" class="s"> <!-- Logo ao lado do nome -->
+        <h1 class="mb-0">Sistema de Cadastro de Visitantes</h1>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <div class="container flex-grow-1 mt-5">
+        <!-- Botão para abrir o pop-up do visitante -->
+        <div class="mb-4">
+            <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalVisitante">Criar Novo Visitante</button>
+        </div>
+
+        <!-- Barra de Navegação -->
+        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="entradas-tab" data-bs-toggle="tab" href="#entradas" role="tab">Entradas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="usuarios-tab" data-bs-toggle="tab" href="#usuarios" role="tab">Usuários</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="departamentos-tab" data-bs-toggle="tab" href="#departamentos" role="tab">Departamentos</a>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+            <!-- Entradas -->
+            <div class="tab-pane fade show active" id="entradas" role="tabpanel">
+                <h3>Registro de Entrada</h3>
+                <form id="formEntradas">
+                    <input type="date" class="form-control mb-3" name="dt_entrada" required>
+                    <input type="time" class="form-control mb-3" name="hr_entrada" required>
+                    <input type="text" class="form-control mb-3" name="motivo" placeholder="Motivo" required>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </form>
+            </div>
+
+            <!-- Usuários -->
+            <div class="tab-pane fade" id="usuarios" role="tabpanel">
+                <h3>Cadastro de Usuários</h3>
+                <form id="formUsuarios">
+                    <input type="text" class="form-control mb-3" name="nome" placeholder="Nome" required>
+                    <input type="text" class="form-control mb-3" name="cpf" placeholder="CPF" required>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </form>
+            </div>
+
+            <!-- Departamentos -->
+            <div class="tab-pane fade" id="departamentos" role="tabpanel">
+                <h3>Cadastro de Departamentos</h3>
+                <form id="formDepartamentos">
+                    <input type="text" class="form-control mb-3" name="nome" placeholder="Nome" required>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST DE SUCESSO -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div id="toastSucesso" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Cadastro realizado com sucesso!
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL PARA CADASTRO DE VISITANTE -->
+    <div class="modal fade" id="modalVisitante" tabindex="-1" aria-labelledby="modalVisitanteLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalVisitanteLabel">Cadastro de Visitante</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formVisitanteModal">
+                        <input type="text" class="form-control mb-3" name="nome" placeholder="Nome Completo" required>
+                        <input type="text" class="form-control mb-3" name="cpf" placeholder="CPF" required>
+                        <input type="date" class="form-control mb-3" name="dt_nascimento" required>
+                        <input type="text" class="form-control mb-3" name="telefone" placeholder="Telefone" required>
+                        
+                        <!-- Endereço -->
+                        <input type="text" class="form-control mb-3" id="id_cep" name="cep" placeholder="CEP" required>
+                        <input type="text" class="form-control mb-3" id="id_bairro" name="bairro" placeholder="Bairro" readonly>
+                        <input type="text" class="form-control mb-3" id="id_localidade" name="localidade" placeholder="Cidade" readonly>
+                        <input type="text" class="form-control mb-3" id="id_logradouro" name="logradouro" placeholder="Rua" readonly>
+                        <input type="text" class="form-control mb-3" name="numero" placeholder="Número" required>
+
+                        <!-- Sexo -->
+                        <select class="form-control mb-3" name="sexo" required>
+                            <option value="">Sexo</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="feminino">Feminino</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                        
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </form>
+                    <br>
+                    <div>
+                        <!-- Início da área de Câmera -->
+                        <video id="video" width="100%" style="display: none;"></video>
+                        <canvas id="canvas" style="display: none;"></canvas>
+                        <input type="hidden" id="capturedImage" name="capturedImage">
+                        <img id="preview" src="" style="display: none;" width="200" alt="Preview da Foto">
+                        <button id="startCamera" class="btn btn-info">Iniciar Câmera</button>
+                        <button id="capturePhoto" class="btn btn-success" style="display: none;">Capturar Foto</button>
+                        <!-- Fim da área de Câmera -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script para exibir o toast e alerta -->
+    <script>
+        $(document).ready(function() {
+            function mostrarToast() {
+                var toast = new bootstrap.Toast(document.getElementById('toastSucesso'));
+                toast.show();
+            }
+
+            function mostrarAlerta() {
+                var alertSucesso = $('#alertSucesso');
+                alertSucesso.removeClass('d-none').fadeIn(500); // Torna o alerta visível
+                setTimeout(function() {
+                    alertSucesso.fadeOut(500); // Esconde o alerta após 3 segundos
+                }, 3000);
+            }
+
+            // Exibir o toast para Entradas, Usuários e Departamentos
+            $('#formEntradas, #formUsuarios, #formDepartamentos').on('submit', function(e) {
+                e.preventDefault();
+                mostrarToast();
+            });
+
+            // Exibir o alerta para o Cadastro de Visitante
+            $('#formVisitanteModal').on('submit', function(e) {
+                e.preventDefault();
+                $('#modalVisitante').modal('hide'); // Fecha o modal
+                mostrarAlerta(); // Exibe o alerta de sucesso
+            });
+        });
+
+        // Função para preencher automaticamente os campos de endereço com a resposta do ViaCEP
+        function preencherCamposEndereco(data) {
+            if (data && data.cep) {
+                document.getElementById('id_bairro').value = data.bairro || '';
+                document.getElementById('id_localidade').value = data.localidade || '';
+                document.getElementById('id_logradouro').value = data.logradouro || '';
+                document.getElementById('id_num_casa').value = '';  // O número da casa precisa ser preenchido manualmente
+            } else {
+                alert("CEP não encontrado!");
+            }
+        }
+
+        // Função para chamar o ViaCEP
+        function consultarViaCEP() {
+            const cep = document.getElementById('id_cep').value.replace('-', ''); // Remover o hífen se houver
+            if (cep.length === 8) {  // Verifica se o CEP tem 8 dígitos
+                const url = `https://viacep.com.br/ws/${cep}/json/`;
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => preencherCamposEndereco(data))
+                    .catch(error => console.error('Erro ao consultar o ViaCEP', error));
+            }
+        }
+
+        // Adiciona um evento para consultar o CEP quando o campo perde o foco (blur)
+        document.getElementById('id_cep').addEventListener('blur', consultarViaCEP);
+
+        const startCameraBtn = document.getElementById('startCamera');
+        const capturePhotoBtn = document.getElementById('capturePhoto');
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const capturedImage = document.getElementById('capturedImage');
+        const preview = document.getElementById('preview');
+
+        let stream = null;
+
+        // Inicia a câmera ao clicar no botão
+        startCameraBtn.addEventListener('click', async () => {
+            try {
+                // Solicita permissão para acessar a câmera
+                stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = stream;
+                video.style.display = 'block';
+                capturePhotoBtn.style.display = 'block';
+            } catch (err) {
+                console.error("Erro ao acessar a câmera:", err);
+                alert("Erro ao acessar a câmera. Verifique as permissões do navegador.");
+            }
+        });
+
+        // Captura a imagem da câmera quando o botão de captura é pressionado
+        capturePhotoBtn.addEventListener('click', () => {
+            // Ajusta o tamanho do canvas para o tamanho do vídeo
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+            
+            // Converte a imagem para Base64
+            const imageData = canvas.toDataURL('image/png');
+            capturedImage.value = imageData; // Define o valor do input oculto
+            preview.src = imageData; // Atualiza a pré-visualização
+            preview.style.display = 'block';
+
+            // Para a câmera após tirar a foto
+            stream.getTracks().forEach(track => track.stop());
+            video.style.display = 'none';
+            capturePhotoBtn.style.display = 'none';
+        });
+    </script>
+
+</body>
+</html>

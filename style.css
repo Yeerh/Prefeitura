@@ -1,0 +1,149 @@
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header fixo no topo */
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0275d8; /* Cor de fundo azul */
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* Logo no header */
+.s {
+    height: 10%; /* Ajuste a altura da logo */
+    width: 10%;  /* A largura será ajustada automaticamente para manter a proporção */
+    margin-right: 15px; /* Espaçamento entre a logo e o nome */
+}
+
+/* Título no header */
+.header h1 {
+    margin: 0;
+    font-size: 1.5rem; /* Tamanho da fonte do título */
+    font-weight: bold;
+}
+
+/* Conteúdo principal */
+.container {
+    margin-top: 20px;
+}
+
+/* Barra de navegação */
+.nav-tabs {
+    margin-bottom: 20px;
+}
+
+/* Footer fixo e estilizado */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%; /* Ajuste para ocupar toda a largura da tela */
+    background-color: #0275d8; /* Cor do fundo */
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.9rem; /* Ajuste do tamanho da fonte */
+}
+
+/* Estilo para os formulários */
+.form-control {
+    border-radius: 0.25rem; /* Bordas arredondadas para os campos de entrada */
+    box-shadow: none; /* Remove o sombreamento dos campos */
+}
+
+/* Estilo para os botões */
+.btn {
+    border-radius: 0.25rem; /* Bordas arredondadas para os botões */
+    font-size: 1rem; /* Tamanho da fonte */
+    padding: 10px 20px; /* Ajuste o padding para botões mais largos */
+}
+
+/* Modais */
+.modal-content {
+    padding: 20px;
+}
+
+/* Tamanho e espaçamento dos itens nas abas */
+.nav-tabs .nav-link {
+    padding: 10px 15px; /* Ajuste de padding para as abas */
+    font-size: 1.1rem;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #0275d8;
+    color: white;
+}
+
+/* Ajustes para campos obrigatórios */
+input[required], select[required] {
+    border: 2px solid #0275d8;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Ajustes gerais para modais */
+.modal-header .btn-close {
+    background-color: transparent;
+    border: none;
+}
+
+.modal-header .modal-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+/* Estilos específicos para as mensagens de sucesso */
+.alert-success {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    z-index: 11;
+    display: none; /* Inicialmente escondido */
+}
+
+/* Estilo do Toast */
+.toast {
+    max-width: 300px; /* Limita a largura do Toast */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 1.25rem; /* Reduz o tamanho do título em telas menores */
+    }
+
+    .footer {
+        font-size: 0.8rem; /* Ajusta o tamanho da fonte do footer em telas pequenas */
+    }
+
+    .modal-content {
+        padding: 15px; /* Reduz o padding do modal em telas menores */
+    }
+
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .btn {
+        font-size: 0.9rem; /* Reduz o tamanho dos botões em telas pequenas */
+        padding: 8px 16px; /* Ajuste de padding para botões menores */
+    }
+
+    .nav-tabs .nav-link {
+        font-size: 1rem; /* Ajusta o tamanho da fonte das abas */
+        padding: 8px 12px; /* Ajusta o padding das abas */
+    }
+}
