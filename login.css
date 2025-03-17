@@ -25,7 +25,18 @@ body {
     max-width: 400px;
     padding: 20px;
     transform: translateY(20px);
-    animation: slideUp 1s ease-out; /* Animação de deslizamento do formulário */
+    animation: slideUp 1s ease-out; /* Animação de deslizamento */
+    text-align: center;
+    position: relative;
+}
+
+/* Logo dentro da caixa de login */
+.logo img {
+    width: 100px; /* Ajuste o tamanho da logo */
+    height: auto;
+    display: block;
+    margin: 0 auto 10px; /* Centraliza a imagem e dá um espaço abaixo */
+    animation: fadeIn 1.5s ease-in-out;
 }
 
 /* Estilos do formulário de login */
@@ -40,12 +51,13 @@ body {
     margin-bottom: 20px;
     color: #333;
     opacity: 0;
-    animation: fadeInText 1s ease-in-out forwards 0.5s; /* Animação para o título */
+    animation: fadeInText 1s ease-in-out forwards 0.5s;
 }
 
 /* Estilos dos campos de entrada */
 .input-group {
     margin-bottom: 15px;
+    text-align: left;
 }
 
 .input-group label {
@@ -54,7 +66,7 @@ body {
     color: #333;
     margin-bottom: 5px;
     opacity: 0;
-    animation: fadeInText 1s ease-in-out forwards 1s; /* Animação para os rótulos */
+    animation: fadeInText 1s ease-in-out forwards 1s;
 }
 
 .input-group input {
@@ -85,7 +97,7 @@ body {
 
 .btn-login:hover {
     background-color: #0056b3;
-    transform: scale(1.05); /* Efeito de escala no botão */
+    transform: scale(1.05);
 }
 
 /* Links abaixo do formulário */
@@ -100,7 +112,7 @@ body {
     text-decoration: none;
     font-size: 14px;
     opacity: 0;
-    animation: fadeInText 1s ease-in-out forwards 1.5s; /* Animação para os links */
+    animation: fadeInText 1s ease-in-out forwards 1.5s;
 }
 
 .links a:hover {

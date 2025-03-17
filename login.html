@@ -7,9 +7,16 @@
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
+
     <div class="login-container">
+        <!-- Logo dentro da caixa de login -->
+        <div class="logo">
+            <img src="templates/img/prefeitura.png" alt="Logo do Sistema">
+        </div>
+
         <form class="login-form">
             <h2>Login</h2>
+            
             <div class="input-group">
                 <label for="username">Usuário</label>
                 <input type="text" id="username" name="username" placeholder="Digite seu usuário" required>
@@ -19,11 +26,8 @@
                 <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
             </div>
             <button type="submit" class="btn-login">Entrar</button>
-            <div class="links">
-                <a href="#">Esqueceu a senha?</a>
-                <a href="#">Criar conta</a>
-            </div>
         </form>
     </div>
+
 </body>
 </html>
