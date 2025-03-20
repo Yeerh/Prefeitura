@@ -13,228 +13,308 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-    <!-- Alerta de sucesso no topo -->
+    <!-- Alerta de sucesso -->
     <div id="alertSucesso" class="alert alert-success text-center position-fixed top-0 start-50 translate-middle-x w-50 d-none" role="alert">
         Cadastro de visitante realizado com sucesso!
     </div>
 
-    <!-- Header fixo no topo -->
-    <header class="header bg-primary text-white text-center py-3 d-flex align-items-center justify-content-center">
-        <img src="templates/img/logo.png" alt="Logo" class="s"> <!-- Logo ao lado do nome -->
+    <!-- Header -->
+    <header class="header bg-primary text-white text-center py-3">
+        <img src="templates/img/logo.png" alt="Logo" class="logo">
         <h1 class="mb-0">Sistema de Cadastro de Visitantes</h1>
     </header>
 
     <!-- Conteúdo principal -->
     <div class="container flex-grow-1 mt-5">
-        <!-- Botão para abrir o pop-up do visitante -->
-        <div class="mb-4">
-            <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalVisitante">Criar Novo Visitante</button>
-        </div>
+        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalVisitante">Criar Novo Visitante</button>
 
         <!-- Barra de Navegação -->
-        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+        <ul class="nav nav-tabs justify-content-center mt-3">
             <li class="nav-item">
-                <a class="nav-link active" id="entradas-tab" data-bs-toggle="tab" href="#entradas" role="tab">Entradas</a>
+                <a class="nav-link active" data-bs-toggle="tab" href="#entradas">Entradas</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="usuarios-tab" data-bs-toggle="tab" href="#usuarios" role="tab">Usuários</a>
+                <a class="nav-link" data-bs-toggle="tab" href="#usuarios">Usuários</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="departamentos-tab" data-bs-toggle="tab" href="#departamentos" role="tab">Departamentos</a>
+                <a class="nav-link" data-bs-toggle="tab" href="#departamentos">Departamentos</a>
             </li>
         </ul>
 
-        <div class="tab-content" id="myTabContent">
-            <!-- Entradas -->
-            <div class="tab-pane fade show active" id="entradas" role="tabpanel">
+        <div class="tab-content mt-3">
+            <div class="tab-pane fade show active" id="entradas">
                 <h3>Registro de Entrada</h3>
                 <form id="formEntradas">
-                    <input type="date" class="form-control mb-3" name="dt_entrada" required>
-                    <input type="time" class="form-control mb-3" name="hr_entrada" required>
-                    <input type="text" class="form-control mb-3" name="motivo" placeholder="Motivo" required>
-                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <div class="row">
+                        <div class="col-md-4"><input type="date" class="form-control" name="dt_entrada" required></div>
+                        <div class="col-md-4"><input type="time" class="form-control" name="hr_entrada" required></div>
+                        <div class="col-md-4"><input type="text" class="form-control" name="motivo" placeholder="Motivo" required></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-2">Salvar</button>
                 </form>
             </div>
 
-            <!-- Usuários -->
-            <div class="tab-pane fade" id="usuarios" role="tabpanel">
+            <div class="tab-pane fade" id="usuarios">
                 <h3>Cadastro de Usuários</h3>
                 <form id="formUsuarios">
-                    <input type="text" class="form-control mb-3" name="nome" placeholder="Nome" required>
-                    <input type="text" class="form-control mb-3" name="cpf" placeholder="CPF" required>
-                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <div class="row">
+                        <div class="col-md-6"><input type="text" class="form-control" name="nome" placeholder="Nome" required></div>
+                        <div class="col-md-6"><input type="text" class="form-control" name="cpf" placeholder="CPF" required></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-2">Salvar</button>
                 </form>
             </div>
 
-            <!-- Departamentos -->
-            <div class="tab-pane fade" id="departamentos" role="tabpanel">
+            <div class="tab-pane fade" id="departamentos">
                 <h3>Cadastro de Departamentos</h3>
                 <form id="formDepartamentos">
-                    <input type="text" class="form-control mb-3" name="nome" placeholder="Nome" required>
-                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <input type="text" class="form-control" name="nome" placeholder="Nome do Departamento" required>
+                    <button type="submit" class="btn btn-primary mt-2">Salvar</button>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- TOAST DE SUCESSO -->
-    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-        <div id="toastSucesso" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="d-flex">
-                <div class="toast-body">
-                    Cadastro realizado com sucesso!
-                </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+  <!-- Modal de Cadastro de Visitante -->
+<!-- Modal de Cadastro de Visitante -->
+<div class="modal fade" id="modalVisitante">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cadastro de Visitante</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-        </div>
-    </div>
-
-    <!-- MODAL PARA CADASTRO DE VISITANTE -->
-    <div class="modal fade" id="modalVisitante" tabindex="-1" aria-labelledby="modalVisitanteLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalVisitanteLabel">Cadastro de Visitante</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="formVisitanteModal">
-                        <input type="text" class="form-control mb-3" name="nome" placeholder="Nome Completo" required>
-                        <input type="text" class="form-control mb-3" name="cpf" placeholder="CPF" required>
-                        <input type="date" class="form-control mb-3" name="dt_nascimento" required>
-                        <input type="text" class="form-control mb-3" name="telefone" placeholder="Telefone" required>
-                        
-                        <!-- Endereço -->
-                        <input type="text" class="form-control mb-3" id="id_cep" name="cep" placeholder="CEP" required>
-                        <input type="text" class="form-control mb-3" id="id_bairro" name="bairro" placeholder="Bairro" readonly>
-                        <input type="text" class="form-control mb-3" id="id_localidade" name="localidade" placeholder="Cidade" readonly>
-                        <input type="text" class="form-control mb-3" id="id_logradouro" name="logradouro" placeholder="Rua" readonly>
-                        <input type="text" class="form-control mb-3" name="numero" placeholder="Número" required>
-
-                        <!-- Sexo -->
-                        <select class="form-control mb-3" name="sexo" required>
-                            <option value="">Sexo</option>
-                            <option value="masculino">Masculino</option>
-                            <option value="feminino">Feminino</option>
-                            <option value="outro">Outro</option>
-                        </select>
-                        
-                        <button type="submit" class="btn btn-primary">Salvar</button>
-                    </form>
-                    <br>
-                    <div>
-                        <!-- Início da área de Câmera -->
-                        <video id="video" width="100%" style="display: none;"></video>
-                        <canvas id="canvas" style="display: none;"></canvas>
-                        <input type="hidden" id="capturedImage" name="capturedImage">
-                        <img id="preview" src="" style="display: none;" width="200" alt="Preview da Foto">
-                        <button id="startCamera" class="btn btn-info">Iniciar Câmera</button>
-                        <button id="capturePhoto" class="btn btn-success" style="display: none;">Capturar Foto</button>
-                        <!-- Fim da área de Câmera -->
+            <div class="modal-body">
+                <form id="formVisitanteModal">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="id_nome" class="form-label">Nome Completo</label>
+                            <input type="text" class="form-control" id="id_nome" name="nome" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="id_cpf" class="form-label">CPF</label>
+                            <input type="text" class="form-control" id="id_cpf" name="cpf" required>
+                        </div>
                     </div>
-                </div>
+
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <label for="id_telefone" class="form-label">Telefone</label>
+                            <input type="text" class="form-control" id="id_telefone" name="telefone" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="id_email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="id_email" name="email">
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-md-4">
+                            <label for="id_cep" class="form-label">CEP</label>
+                            <input type="text" class="form-control" id="id_cep" name="cep" required>
+                        </div>
+                        <div class="col-md-8">
+                            <label for="id_logradouro" class="form-label">Endereço</label>
+                            <input type="text" class="form-control" id="id_logradouro" name="logradouro" required>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-md-4">
+                            <label for="id_numero" class="form-label">Número</label>
+                            <input type="text" class="form-control" id="id_numero" name="numero" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="id_bairro" class="form-label">Bairro</label>
+                            <input type="text" class="form-control" id="id_bairro" name="bairro" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="id_localidade" class="form-label">Cidade</label>
+                            <input type="text" class="form-control" id="id_localidade" name="localidade" required>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <label for="id_departamento" class="form-label">Departamento</label>
+                            <select class="form-select" id="id_departamento" name="departamento" required>
+                                <option value="">Selecione</option>
+                                <option value="RH">RH</option>
+                                <option value="TI">TI</option>
+                                <option value="Administração">Administração</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="id_motivo" class="form-label">Motivo da Visita</label>
+                            <input type="text" class="form-control" id="id_motivo" name="motivo" required>
+                        </div>
+                    </div>
+
+                
+                        <div class="col-md-6 text-center">
+                            <label class="form-label">Capturar pela Webcam</label>
+                            <div>
+                                <button type="button" id="startCamera" class="btn btn-info btn-sm">Iniciar Câmera</button>
+                                <button type="button" id="capturePhoto" class="btn btn-success btn-sm" style="display: none;">Capturar Foto</button>
+                            </div>
+                            <video id="video" width="100%" class="mt-2" style="display: none;"></video>
+                            <canvas id="canvas" style="display: none;"></canvas>
+                            <input type="hidden" id="capturedImage" name="capturedImage">
+                            <img id="preview" src="" class="rounded mt-2" style="display: none; width: 100px;" alt="Foto Capturada">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mt-3">Salvar</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
+<!-- Pop-up de Guichê -->
+<!-- Pop-up de Guichê -->
+<div class="modal fade" id="modalGuiche" tabindex="-1" aria-labelledby="modalGuicheLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalGuicheLabel">Escolha o Guichê</h5>
+            </div>
+            <div class="modal-body">
+                <form id="formGuiche">
+                    <div class="mb-3">
+                        <label for="id_guiche" class="form-label">Selecione o Guichê:</label>
+                        <select class="form-select" id="id_guiche" name="guiche" required>
+                            <option value="" disabled selected>Escolha entre 1 e 3</option>
+                            <option value="1">Guichê 1</option>
+                            <option value="2">Guichê 2</option>
+                            <option value="3">Guichê 3</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </form>
+                <!-- Container para a mensagem de confirmação -->
+                <div id="confirmationMessage" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <!-- Script para exibir o toast e alerta -->
+
+    <!-- Script -->
     <script>
         $(document).ready(function() {
             function mostrarToast() {
-                var toast = new bootstrap.Toast(document.getElementById('toastSucesso'));
+                let toast = new bootstrap.Toast($('#toastSucesso')[0]);
                 toast.show();
             }
 
-            function mostrarAlerta() {
-                var alertSucesso = $('#alertSucesso');
-                alertSucesso.removeClass('d-none').fadeIn(500); // Torna o alerta visível
-                setTimeout(function() {
-                    alertSucesso.fadeOut(500); // Esconde o alerta após 3 segundos
-                }, 3000);
-            }
-
-            // Exibir o toast para Entradas, Usuários e Departamentos
             $('#formEntradas, #formUsuarios, #formDepartamentos').on('submit', function(e) {
                 e.preventDefault();
                 mostrarToast();
             });
 
-            // Exibir o alerta para o Cadastro de Visitante
             $('#formVisitanteModal').on('submit', function(e) {
                 e.preventDefault();
-                $('#modalVisitante').modal('hide'); // Fecha o modal
-                mostrarAlerta(); // Exibe o alerta de sucesso
+                $('#modalVisitante').modal('hide');
+                $('#alertSucesso').removeClass('d-none').fadeIn(500).delay(3000).fadeOut(500);
+            });
+
+            $('#id_cep').on('blur', function() {
+                let cep = $(this).val().replace('-', '');
+                if (cep.length === 8) {
+                    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                        .then(response => response.json())
+                        .then(data => {
+                            $('#id_bairro').val(data.bairro || '');
+                            $('#id_localidade').val(data.localidade || '');
+                            $('#id_logradouro').val(data.logradouro || '');
+                        })
+                        .catch(error => console.error('Erro ao consultar o ViaCEP', error));
+                }
             });
         });
+        document.addEventListener("DOMContentLoaded", function() {
+    // Abre o modal de guichê ao carregar a página
+    $('#modalGuiche').modal('show');
 
-        // Função para preencher automaticamente os campos de endereço com a resposta do ViaCEP
-        function preencherCamposEndereco(data) {
-            if (data && data.cep) {
-                document.getElementById('id_bairro').value = data.bairro || '';
-                document.getElementById('id_localidade').value = data.localidade || '';
-                document.getElementById('id_logradouro').value = data.logradouro || '';
-                document.getElementById('id_num_casa').value = '';  // O número da casa precisa ser preenchido manualmente
-            } else {
-                alert("CEP não encontrado!");
-            }
+    // Referência ao modal e ao formulário
+    const modalGuiche = new bootstrap.Modal(document.getElementById('modalGuiche'));
+    const formGuiche = document.getElementById('formGuiche');
+    const guicheSelect = document.getElementById('id_guiche');
+    const confirmationMessage = document.getElementById('confirmationMessage'); // Elemento de mensagem de confirmação
+
+    // Previne o fechamento do modal até que o guichê seja selecionado
+    $('#modalGuiche').on('hide.bs.modal', function (e) {
+        // Impede o fechamento do modal se não houver escolha
+        if (!guicheSelect.value) {
+            e.preventDefault();
+            alert("Por favor, selecione um guichê antes de sair.");
+        }
+    });
+
+    // Lida com o envio do formulário de guichê
+    formGuiche.addEventListener('submit', function(event) {
+        event.preventDefault(); // Impede o envio padrão do formulário
+        const guicheValue = guicheSelect.value;
+
+        if (!guicheValue) {
+            alert("Por favor, selecione um guichê!");
+            return;
         }
 
-        // Função para chamar o ViaCEP
-        function consultarViaCEP() {
-            const cep = document.getElementById('id_cep').value.replace('-', ''); // Remover o hífen se houver
-            if (cep.length === 8) {  // Verifica se o CEP tem 8 dígitos
-                const url = `https://viacep.com.br/ws/${cep}/json/`;
-                fetch(url)
-                    .then(response => response.json())
-                    .then(data => preencherCamposEndereco(data))
-                    .catch(error => console.error('Erro ao consultar o ViaCEP', error));
-            }
+        // Exibe a mensagem de confirmação personalizada
+        confirmationMessage.innerHTML = `
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">Guichê Selecionado!</h4>
+                <p><strong>Guichê ${guicheValue}</strong> foi selecionado com sucesso.</p>
+                <p class="mb-0">Você pode agora prosseguir com o atendimento.</p>
+            </div>
+        `;
+        confirmationMessage.style.display = 'block';
+
+        // Fecha o modal após a escolha
+        setTimeout(() => {
+            modalGuiche.hide();
+        }, 2000); // Aguarda 2 segundos antes de fechar o modal
+    });
+});
+(function() {
+    const originalConsoleLog = console.log;
+    const devToolsDetection = () => {
+        const devToolsOpened = /./;
+        devToolsOpened.toString = function() {
+            alert("Ferramentas de desenvolvedor detectadas! Não é permitido mexer na estrutura do site.");
+            // Impede a ação (retorna uma string vazia para o console.log ser "silenciado")
+            return "";
+        };
+
+        console.log(devToolsOpened);
+    };
+
+    // Detecta se as ferramentas de desenvolvedor estão abertas (através de um intervalo de tempo)
+    setInterval(function() {
+        const devToolsWidth = window.innerWidth - document.documentElement.clientWidth > 100;
+        const devToolsHeight = window.innerHeight - document.documentElement.clientHeight > 100;
+        if (devToolsWidth || devToolsHeight) {
+            devToolsDetection();
         }
+    }, 1000);  // A cada 1 segundo, verifica se as ferramentas foram abertas
 
-        // Adiciona um evento para consultar o CEP quando o campo perde o foco (blur)
-        document.getElementById('id_cep').addEventListener('blur', consultarViaCEP);
+    // Desabilita o clique com o botão direito para dificultar a interação
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();  // Bloqueia o menu de contexto (clicar com o botão direito)
+    });
 
-        const startCameraBtn = document.getElementById('startCamera');
-        const capturePhotoBtn = document.getElementById('capturePhoto');
-        const video = document.getElementById('video');
-        const canvas = document.getElementById('canvas');
-        const capturedImage = document.getElementById('capturedImage');
-        const preview = document.getElementById('preview');
+    // Desabilita o acesso ao menu de desenvolvimento (inspecionar)
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key === 'I')) {
+            event.preventDefault();  // Impede a tecla F12 ou Ctrl + Shift + I
+            alert("Ferramentas de desenvolvedor detectadas! Não é permitido mexer na estrutura do site.");
+        }
+    });
+})();
 
-        let stream = null;
 
-        // Inicia a câmera ao clicar no botão
-        startCameraBtn.addEventListener('click', async () => {
-            try {
-                // Solicita permissão para acessar a câmera
-                stream = await navigator.mediaDevices.getUserMedia({ video: true });
-                video.srcObject = stream;
-                video.style.display = 'block';
-                capturePhotoBtn.style.display = 'block';
-            } catch (err) {
-                console.error("Erro ao acessar a câmera:", err);
-                alert("Erro ao acessar a câmera. Verifique as permissões do navegador.");
-            }
-        });
 
-        // Captura a imagem da câmera quando o botão de captura é pressionado
-        capturePhotoBtn.addEventListener('click', () => {
-            // Ajusta o tamanho do canvas para o tamanho do vídeo
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-            
-            // Converte a imagem para Base64
-            const imageData = canvas.toDataURL('image/png');
-            capturedImage.value = imageData; // Define o valor do input oculto
-            preview.src = imageData; // Atualiza a pré-visualização
-            preview.style.display = 'block';
-
-            // Para a câmera após tirar a foto
-            stream.getTracks().forEach(track => track.stop());
-            video.style.display = 'none';
-            capturePhotoBtn.style.display = 'none';
-        });
     </script>
 
 </body>
